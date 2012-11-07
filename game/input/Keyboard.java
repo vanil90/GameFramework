@@ -1,15 +1,33 @@
-package game;
+package game.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class InputManager implements KeyListener {
-
+public class Keyboard implements KeyListener {
 	private final int MAXKEYS = 1024;
 	private boolean[] keysDown;
 	private boolean[] keysUp;
+	private static Keyboard instance;
 
-	public InputManager() {
+	public static Keyboard getInstance() {
+		if (instance == null)
+			instance = new Keyboard();
+		return instance;
+	}
+
+	public static KeyboardState getState() {
+		return new KeyboardState(instance.getKeysUp(), instance.getKeysDown());
+	}
+
+	public boolean[] getKeysUp() {
+		return keysUp;
+	}
+
+	public boolean[] getKeysDown() {
+		return keysDown;
+	}
+
+	private Keyboard() {
 		keysDown = new boolean[MAXKEYS];
 		keysUp = new boolean[MAXKEYS];
 
@@ -36,11 +54,4 @@ public class InputManager implements KeyListener {
 
 	}
 
-	public boolean isKeyDown(int keyCode) {
-		return keysDown[keyCode];
-	}
-
-	public boolean isKeyUp(int keyCode) {
-		return keysUp[keyCode];
-	}
 }

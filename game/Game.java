@@ -1,5 +1,7 @@
 package game;
 
+import game.input.Keyboard;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,17 +23,14 @@ public abstract class Game extends Canvas implements Runnable {
 
 	private long lastFrame;
 
-	protected InputManager input;
-
 	public Game(String title, int width, int height) {
 		this.title = title;
 		windowSize = new Dimension(width, height);
 
-		frame = new JFrame(title);
-		input = new InputManager();
+		frame = new JFrame(this.title);
 
-		frame.addKeyListener(input);
-		addKeyListener(input);
+		// frame.addKeyListener(Keyboard.getInstance());
+		addKeyListener(Keyboard.getInstance());
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -59,7 +58,7 @@ public abstract class Game extends Canvas implements Runnable {
 		System.out.println("Running...");
 		init();
 		lastFrame = System.currentTimeMillis();
-		
+
 		int frames = 0, elapsedTime = 0;
 
 		while (running) {
@@ -77,19 +76,18 @@ public abstract class Game extends Canvas implements Runnable {
 
 			g.dispose();
 			strategy.show();
-			
+
 			frames++;
 			elapsedTime += deltaTime;
-			
-			if(elapsedTime > 1000) {
+
+			if (elapsedTime > 1000) {
 				elapsedTime = 0;
 				frame.setTitle("" + frames);
 				frames = 0;
 			}
-			
 
 			try {
-				//Thread.sleep(10);
+				// Thread.sleep(10);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
