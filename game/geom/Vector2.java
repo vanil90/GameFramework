@@ -1,14 +1,14 @@
 package game.geom;
 
-public class Vector2f {
+public class Vector2 {
 	private float x;
 	private float y;
 
-	public Vector2f() {
+	public Vector2() {
 		x = y = 0;
 	}
 
-	public Vector2f(float x, float y) {
+	public Vector2(float x, float y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -29,7 +29,7 @@ public class Vector2f {
 		this.y = y;
 	}
 
-	public void add(Vector2f v) {
+	public void add(Vector2 v) {
 		add(v.getX(), v.getY());
 	}
 
@@ -38,7 +38,7 @@ public class Vector2f {
 		setY(getY() + y);
 	}
 
-	public float distance(Vector2f v) {
+	public float distance(Vector2 v) {
 		float distance;
 
 		distance = (float) Math.sqrt(Math.pow(getX() - v.getX(), 2)

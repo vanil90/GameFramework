@@ -16,7 +16,7 @@ public abstract class Game extends Canvas implements Runnable {
 	private JFrame frame;
 	private Dimension windowSize;
 	private BufferStrategy strategy;
-	private String title = "Teste";
+	private String title;
 
 	private boolean running;
 	private Thread thread;
@@ -50,6 +50,7 @@ public abstract class Game extends Canvas implements Runnable {
 		createBufferStrategy(3);
 		strategy = getBufferStrategy();
 
+		requestFocus();
 		thread = new Thread(this);
 	}
 

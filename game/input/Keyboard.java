@@ -7,11 +7,9 @@ public class Keyboard implements KeyListener {
 	private final int MAXKEYS = 1024;
 	private boolean[] keysDown;
 	private boolean[] keysUp;
-	private static Keyboard instance;
+	private static Keyboard instance = new Keyboard();
 
 	public static Keyboard getInstance() {
-		if (instance == null)
-			instance = new Keyboard();
 		return instance;
 	}
 
